@@ -1,0 +1,19 @@
+# iRacelog documentation
+
+_work in progress_
+
+## Current versions
+
+List of current components versions
+[source,yaml]
+include::versions.yml[]
+
+## Components
+
+### Racelogger
+
+### iRacelog
+
+## Credits
+This application was inspired by https://timing71.org[timing71.org]. 
+
