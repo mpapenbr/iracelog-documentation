@@ -5,11 +5,19 @@ _work in progress_
 ## Current versions
 
 List of current components versions
-[source,yaml]
-include::versions.yml[]
+[]
+[%header,format=dsv]
+:===
+Component:Version
+racelogger: v0.6.2
+iracelog-web: v0.18.3
+iracelog-service-manager: v0.5.1
+iracelog-analysis-service: v0.3.0
+iracelog-graphql: v0.3.1
+:===
 
 ## Components
-
+image::components.drawio.png[]
 ### Racelogger
 
 ### iRacelog
