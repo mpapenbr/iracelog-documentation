@@ -17,7 +17,11 @@ iracelog-graphql: v0.3.1
 :===
 
 ## Components
+.Components overview (png)
 image::components.drawio.png[]
+
+.Components overview (svg)
+image::components.drawio.svg[]
 ### Racelogger
 
 ### iRacelog
