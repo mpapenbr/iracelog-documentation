@@ -9,7 +9,7 @@ List of current components versions
 [%header,format=dsv]
 :===
 Component:Version
-racelogger: v0.6.2
+racelogger: v0.7.0
 iracelog-web: v0.18.3
 iracelog-service-manager: v0.6.0
 iracelog-analysis-service: v0.3.0
