@@ -11,7 +11,7 @@ List of current components versions
 Component:Version
 racelogger: v0.6.2
 iracelog-web: v0.18.3
-iracelog-service-manager: v0.5.1
+iracelog-service-manager: v0.6.0
 iracelog-analysis-service: v0.3.0
 iracelog-graphql: v0.3.1
 :===
