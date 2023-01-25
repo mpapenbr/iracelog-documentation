@@ -3,3 +3,4 @@ iracelog-web: v0.18.3
 iracelog-service-manager: v0.6.0
 iracelog-analysis-service: v0.3.0
 iracelog-graphql: v0.3.1
+racelogctl: v0.3.0

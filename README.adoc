@@ -5,7 +5,7 @@ _work in progress_
 ## Current versions
 
 List of current components versions
-[]
+
 [%header,format=dsv]
 :===
 Component:Version
@@ -14,17 +14,141 @@ iracelog-web: v0.18.3
 iracelog-service-manager: v0.6.0
 iracelog-analysis-service: v0.3.0
 iracelog-graphql: v0.3.1
+racelogctl: v0.3.0
 :===
 
 ## Components
-.Components overview (png)
-image::components.drawio.png[]
 
 .Components overview (svg)
 image::components.drawio.svg[]
 ### Racelogger
+This module is responsible for extracting the data from the local running iRacing simulation software. 
+The _racelogger_ uses the python module https://github.com/kutu/pyirsdk[pyirsdk] to get access to the iRacing telemetry data. 
+_Racelogger_ is the data provider for the whole project. 
 
-### iRacelog
+[%noheader,cols="1,2"]
+|===
+|Repository| https://github.com/mpapenbr/python-racelogger[racelogger]
+
+|Language| Python
+
+|Tech|   https://github.com/kutu/pyirsdk[pyirsdk], https://wamp-proto.org/[WAMP], https://github.com/crossbario/autobahn-python[autobahn]
+|===
+
+
+### iRacelog Web
+
+This is the web frontend. It is used to show race data for both live and archived events. 
+
+Repository: 
+
+[%noheader,cols="1,2"]
+|===
+|Repository| https://github.com/mpapenbr/iracelog[iracelog]
+
+|Language| TypeScript
+
+|Tech|  https://reactjs.org/[React], https://ant.design[ant.design], https://wamp-proto.org/[WAMP]
+|===
+
+### iRacelog Service Manager
+
+This module is the main entry point to manage the backend services. It recieves messages from the _racelogger_ and is responsible for the distribution to other backend components, such as
+
+* archive the recieved messages from the _racelogger_
+* compute additional stats (such as stint durations, driver seat times, driver laps)
+* gateway to linked subcomponents 
+
+[%noheader,cols="1,2"]
+|===
+|Repository| https://github.com/mpapenbr/iracelog-service-manager[iracelog-service-manager]
+
+|Language| Python
+
+|Tech| https://crossbar.io/[crossbar], https://wamp-proto.org/[WAMP], https://github.com/crossbario/autobahn-python[autobahn]
+|===
+
+
+### iRacelog Anaylsis Service
+
+This module is responsible for processing incoming WAMP-messages from the _racelogger_. During live events it holds the current race state (including extra computations) and stores it periodically into the database.
+
+[%noheader,cols="1,2"]
+|===
+|Repository| https://github.com/mpapenbr/iracelog-analysis-service[iracelog-analysis-service]
+
+|Language| TypeScript
+
+|Tech| https://wamp-proto.org/[WAMP], https://github.com/crossbario/autobahn-js[autobahn]
+|===
+
+
+### iRacelog GraphQL
+
+This component provides the search functionality for the _iRacelog_. 
+
+[%noheader,cols="1,2"]
+|===
+|Repository| https://github.com/mpapenbr/iracelog-graphql[iracelog-graphql]
+
+|Language| Go
+
+|Tech| https://graphql.org/[GraphQL]
+|===
+
+
+
+## Utilities
+
+### racelogctl (CLI)
+
+Command line tool used for administrative tasks which are not yet available via web frontend. 
+
+This tool is also used for stress tests during development.
+
+[%noheader,cols="1,2"]
+|===
+|Repository| https://github.com/mpapenbr/racelogctl[racelogctl]
+
+|Language| Go
+
+|Tech| https://github.com/spf13/cobra[Cobra], https://github.com/spf13/viper[Viper]
+|===
+
+
+### Deployment 
+
+This repository contains samples for deploying the application in the following environments
+
+* docker via docker compose
+* kubernetes via Helm charts
+
+CAUTION: The samples in this repository are designed for local test environments. 
+
+
+[%noheader,cols="1,2"]
+|===
+|Repository| https://github.com/mpapenbr/iracelog-deployment[iracelog-deployment]
+
+
+|Tech| https://www.docker.com/[Docker], https://kubernetes.io/[Kubernetes], https://helm.sh/[Helm]
+|===
+
+
+### Sample installation 
+
+This setup is supposed for users who are familar with Linux servers. The ansible playbooks can be used to setup the application on IaaS (Infrastructure as a Service) machines. 
+
+The sample uses Hetzner (for IaaS) and Netcup (for domain services), but you may adjust the playbooks for other providers. 
+
+[%noheader,cols="1,2"]
+|===
+|Repository| https://github.com/mpapenbr/iracelog-ansible-server-setup[sample-setup]
+
+|Language| Ansible, Python
+|Tech| https://www.docker.com/[Docker]
+|===
+
 
 ## Credits
 This application was inspired by https://timing71.org[timing71.org]. 
