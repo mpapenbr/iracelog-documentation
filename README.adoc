@@ -4,18 +4,34 @@ _work in progress_
 
 ## Current versions
 
-List of current components versions
+List of current components
 
 [%header,format=dsv]
 :===
 Component:Version
 racelogger: v0.7.0
 iracelog-web: v0.18.3
-iracelog-service-manager: v0.6.0
+iracelog-service-manager-go: v0.7.0
+iracelog-wamp-router: v0.0.2
 iracelog-analysis-service: v0.3.0
 iracelog-graphql: v0.3.1
 racelogctl: v0.4.0
 :===
+
+## Retired components
+
+List of no longer used components 
+
+[%header,format=dsv]
+:===
+Component:Version
+iracelog-service-manager: v0.6.1
+crossbar: v22.6.1
+:===
+
+_iracelog-service-manager_ was replaced by the Go variant _iracelog-service-manager-go_
+
+_crossbar_ was replaced by the Go variant _iracelog-wamp-router_
 
 ## Components
 
@@ -51,21 +67,40 @@ Repository:
 |Tech|  https://reactjs.org/[React], https://ant.design[ant.design], https://wamp-proto.org/[WAMP]
 |===
 
-### iRacelog Service Manager
+
+### iRacelog WAMP Router 
+
+This module is the replacement for https://crossbar.io[Crossbar]. 
+
+It serves as the central point for distributing messages between the components according to the WAMP specification.
+
+While crossbar provides a lot of features we actually don't need much of them. The Nexus library in Go fullfills our needs and comes with a much smaller footprint.
+
+[%noheader,cols="1,2"]
+|===
+|Repository| https://github.com/mpapenbr/iracelog-wamp-router[iracelog-wamp-router]
+
+|Language| Go
+
+|Tech|  https://wamp-proto.org/[WAMP], https://github.com/gammazero/nexus[Nexus]
+|===
+
+### iRacelog Service Manager (Go)
 
 This module is the main entry point to manage the backend services. It recieves messages from the _racelogger_ and is responsible for the distribution to other backend components, such as
 
 * archive the recieved messages from the _racelogger_
 * compute additional stats (such as stint durations, driver seat times, driver laps)
 * gateway to linked subcomponents 
+* database migration
 
 [%noheader,cols="1,2"]
 |===
-|Repository| https://github.com/mpapenbr/iracelog-service-manager[iracelog-service-manager]
+|Repository| https://github.com/mpapenbr/iracelog-service-manager-go[iracelog-service-manager-go]
 
-|Language| Python
+|Language| Go
 
-|Tech| https://crossbar.io/[crossbar], https://wamp-proto.org/[WAMP], https://github.com/crossbario/autobahn-python[autobahn]
+|Tech|  https://wamp-proto.org/[WAMP], https://github.com/gammazero/nexus[Nexus], https://github.com/jackc/pgx/v5[Postgresql], https://github.com/golang-migrate/migrate[Migrate]
 |===
 
 
@@ -96,6 +131,24 @@ This component provides the search functionality for the _iRacelog_.
 |Tech| https://graphql.org/[GraphQL]
 |===
 
+## Components (retired)
+
+### iRacelog Service Manager (Python)
+
+This module is the main entry point to manage the backend services. It recieves messages from the _racelogger_ and is responsible for the distribution to other backend components, such as
+
+* archive the recieved messages from the _racelogger_
+* compute additional stats (such as stint durations, driver seat times, driver laps)
+* gateway to linked subcomponents 
+
+[%noheader,cols="1,2"]
+|===
+|Repository| https://github.com/mpapenbr/iracelog-service-manager[iracelog-service-manager]
+
+|Language| Python
+
+|Tech| https://crossbar.io/[crossbar], https://wamp-proto.org/[WAMP], https://github.com/crossbario/autobahn-python[autobahn]
+|===
 
 
 ## Utilities
@@ -112,7 +165,7 @@ This tool is also used for stress tests during development.
 
 |Language| Go
 
-|Tech| https://github.com/spf13/cobra[Cobra], https://github.com/spf13/viper[Viper]
+|Tech| https://github.com/spf13/cobra[Cobra], https://github.com/spf13/viper[Viper], https://wamp-proto.org/[WAMP], https://github.com/gammazero/nexus[Nexus]
 |===
 
 
