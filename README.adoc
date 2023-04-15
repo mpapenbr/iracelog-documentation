@@ -13,7 +13,7 @@ racelogger: v0.7.0
 iracelog-web: v0.18.3
 iracelog-service-manager-go: v0.7.1
 iracelog-wamp-router: v0.0.2
-iracelog-analysis-service: v0.3.0
+iracelog-analysis-service: v0.3.1
 iracelog-graphql: v0.3.1
 racelogctl: v0.4.0
 :===
