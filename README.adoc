@@ -14,7 +14,7 @@ iracelog-web: v0.18.3
 iracelog-service-manager-go: v0.7.1
 iracelog-wamp-router: v0.0.2
 iracelog-analysis-service: v0.3.1
-iracelog-graphql: v0.3.1
+iracelog-graphql: v0.4.0
 racelogctl: v0.4.0
 :===
 
