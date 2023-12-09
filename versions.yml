@@ -1,8 +1,6 @@
-racelogger: v0.8.0
+racelogger: v0.9.0
 iracelog-web: v0.21.0
-iracelog-service-manager: v0.6.1
 iracelog-service-manager-go: 0.8.0
 iracelog-wamp-router: v0.0.2
-iracelog-analysis-service: v0.3.1
 iracelog-graphql: v0.4.0
 racelogctl: v0.4.0
