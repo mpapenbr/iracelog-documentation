@@ -9,10 +9,9 @@ List of current components
 [%header,format=dsv]
 :===
 Component:Version
-racelogger: v0.9.0
+racelogger: v0.12.0
 iracelog-web: v0.24.3
 iracelog-service-manager-go: v0.14.2
-iracelog-wamp-router: v0.0.2
 iracelog-graphql: v0.4.0
 racelogctl: v0.4.0
 :===
@@ -24,6 +23,7 @@ List of no longer used components
 [%header,format=dsv]
 :===
 Component:Version
+iracelog-wamp-router: v0.0.2
 racelogger (python): v0.8.0
 iracelog-service-manager: v0.6.1
 iracelog-analysis-service: v0.3.1
@@ -37,6 +37,8 @@ _iracelog-analysis-service_ was put out of order. Its tasks were integrated in _
 _crossbar_ was replaced by the Go variant _iracelog-wamp-router_
 
 _racelogger_ was replaced by the Go variant _go-racelogger_
+
+_iracelog-wamp-router_ was no longer needed with the move from WAMP to gRPC
 
 ## Components
 
@@ -53,7 +55,7 @@ _Racelogger_ is the data provider for the whole project.
 
 |Language| Go
 
-|Tech|   https://wamp-proto.org/[WAMP]
+|Tech|   https://grpc.io/[gRPC]
 |===
 
 
@@ -69,34 +71,17 @@ Repository:
 
 |Language| TypeScript
 
-|Tech|  https://reactjs.org/[React], https://ant.design[ant.design], https://wamp-proto.org/[WAMP]
+|Tech|  https://reactjs.org/[React], https://ant.design[ant.design], 
 |===
 
 
-### iRacelog WAMP Router 
-
-This module is the replacement for https://crossbar.io[Crossbar]. 
-
-It serves as the central point for distributing messages between the components according to the WAMP specification.
-
-While crossbar provides a lot of features we actually don't need much of them. The Nexus library in Go fullfills our needs and comes with a much smaller footprint.
-
-[%noheader,cols="1,2"]
-|===
-|Repository| https://github.com/mpapenbr/iracelog-wamp-router[iracelog-wamp-router]
-
-|Language| Go
-
-|Tech|  https://wamp-proto.org/[WAMP], https://github.com/gammazero/nexus[Nexus]
-|===
 
 ### iRacelog Service Manager (Go)
 
-This module is the main entry point to manage the backend services. It recieves messages from the _racelogger_ and is responsible for the distribution to other backend components, such as
+This module is the main entry point to manage the backend services. It recieves messages from the _racelogger_ and is responsible for the following tasks
 
 * archive the recieved messages from the _racelogger_
 * compute additional stats (such as stint durations, driver seat times, driver laps)
-* gateway to linked subcomponents 
 * database migration
 
 [%noheader,cols="1,2"]
@@ -105,7 +90,7 @@ This module is the main entry point to manage the backend services. It recieves 
 
 |Language| Go
 
-|Tech|  https://wamp-proto.org/[WAMP], https://github.com/gammazero/nexus[Nexus], https://github.com/jackc/pgx/v5[Postgresql], https://github.com/golang-migrate/migrate[Migrate]
+|Tech|  https://grpc.io/[gRPC], https://buf.build/[buf.build], https://connectrpc.com/[ConnectRPC], https://opentelemetry.io/[OpenTelemetry], https://github.com/jackc/pgx/v5[Postgresql], https://github.com/golang-migrate/migrate[Migrate]
 |===
 
 
@@ -125,6 +110,24 @@ This component provides the search functionality for the _iRacelog_.
 |===
 
 ## Components (retired)
+
+### iRacelog WAMP Router 
+
+This module is the replacement for https://crossbar.io[Crossbar]. 
+
+It serves as the central point for distributing messages between the components according to the WAMP specification.
+
+While crossbar provides a lot of features we actually don't need much of them. The Nexus library in Go fullfills our needs and comes with a much smaller footprint.
+
+[%noheader,cols="1,2"]
+|===
+|Repository| https://github.com/mpapenbr/iracelog-wamp-router[iracelog-wamp-router]
+
+|Language| Go
+
+|Tech|  https://wamp-proto.org/[WAMP], https://github.com/gammazero/nexus[Nexus]
+|===
+
 
 ### Racelogger (Python)
 This module is responsible for extracting the data from the local running iRacing simulation software. 
