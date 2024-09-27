@@ -13,32 +13,9 @@ racelogger: v0.14.0
 iracelog-web: v0.28.0
 iracelog-service-manager-go: v0.21.0
 iracelog-graphql: v0.4.0
-racelogctl: v0.4.0
+iracelog-cli: v0.4.0
 :===
 
-## Retired components
-
-List of no longer used components 
-
-[%header,format=dsv]
-:===
-Component:Version
-iracelog-wamp-router: v0.0.2
-racelogger (python): v0.8.0
-iracelog-service-manager: v0.6.1
-iracelog-analysis-service: v0.3.1
-crossbar: v22.6.1
-:===
-
-_iracelog-service-manager_ was replaced by the Go variant _iracelog-service-manager-go_
-
-_iracelog-analysis-service_ was put out of order. Its tasks were integrated in _iracelog-service-manager-go_
-
-_crossbar_ was replaced by the Go variant _iracelog-wamp-router_
-
-_racelogger_ was replaced by the Go variant _go-racelogger_
-
-_iracelog-wamp-router_ was no longer needed with the move from WAMP to gRPC
 
 ## Components
 
@@ -93,6 +70,21 @@ This module is the main entry point to manage the backend services. It recieves 
 |Tech|  https://grpc.io/[gRPC], https://buf.build/[buf.build], https://connectrpc.com/[ConnectRPC], https://opentelemetry.io/[OpenTelemetry], https://github.com/jackc/pgx/v5[Postgresql], https://github.com/golang-migrate/migrate[Migrate]
 |===
 
+### iRacelog CLI 
+
+Command line tool used for administrative tasks which are not yet available via web frontend. 
+
+This tool is also used for stress tests during development.
+
+
+[%noheader,cols="1,2"]
+|===
+|Repository| https://github.com/mpapenbr/iracelog-cli[iracelog-cli]
+
+|Language| Go
+
+|Tech|  https://grpc.io/[gRPC], https://buf.build/[buf.build], https://connectrpc.com/[ConnectRPC]
+|===
 
 
 
@@ -109,7 +101,34 @@ This component provides the search functionality for the _iRacelog_.
 |Tech| https://graphql.org/[GraphQL]
 |===
 
+
+
 ## Components (retired)
+
+[%header,format=dsv]
+:===
+Component:Version
+iracelog-wamp-router: v0.0.2
+racelogger (python): v0.8.0
+iracelog-service-manager: v0.6.1
+iracelog-analysis-service: v0.3.1
+crossbar: v22.6.1
+racelogctl: v0.4.0
+:===
+
+_iracelog-service-manager_ was replaced by the Go variant _iracelog-service-manager-go_
+
+_iracelog-analysis-service_ was put out of order. Its tasks were integrated in _iracelog-service-manager-go_
+
+_crossbar_ was replaced by the Go variant _iracelog-wamp-router_
+
+_racelogger_ was replaced by the Go variant _go-racelogger_
+
+_racelogctl_ was replaced by the gRPC variant _iracelog-cli_
+
+_iracelog-wamp-router_ was no longer needed with the move from WAMP to gRPC
+
+
 
 ### iRacelog WAMP Router 
 
