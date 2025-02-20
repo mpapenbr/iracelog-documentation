@@ -3,4 +3,4 @@ iracelog-web: v0.33.0
 iracelog-service-manager-go: v0.31.0
 iracelog-wamp-router: v0.0.2
 iracelog-graphql: v0.4.0
-iracelog-cli: v0.6.0
+iracelog-cli: v0.7.0
