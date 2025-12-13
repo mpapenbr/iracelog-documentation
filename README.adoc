@@ -10,7 +10,7 @@ List of current components
 :===
 Component:Version
 racelogger: v0.23.0
-iracelog-web: v0.42.0
+iracelog-web: v0.43.0
 iracelog-service-manager-go: v0.37.7
 iracelog-graphql: v0.7.0
 iracelog-cli: v0.8.0
